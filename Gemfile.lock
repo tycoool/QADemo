@@ -143,6 +143,8 @@ GEM
     polyamorous (1.0.0)
       activerecord (>= 3.0)
     polyglot (0.3.4)
+    quiet_assets (1.0.2)
+      railties (>= 3.1, < 5.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -242,6 +244,7 @@ DEPENDENCIES
   kaminari
   omniauth-facebook
   pg
+  quiet_assets
   rails (= 4.1.1)
   ransack
   rspec-rails

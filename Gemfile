@@ -31,6 +31,7 @@ end
 group :development do
   gem "chronic"
   gem "admin_view"
+  gem 'quiet_assets'
 end
 
 group :test do

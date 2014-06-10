@@ -7,7 +7,12 @@
 
 <ol>
 <% @survey.questions.each do |question| %>
-  <li><%=h question.content %></li>
+  <li>
+    <%=h question.content %>
+    <% question.answers.each do |answer| %>
+      A: <%= answer.content %>
+    <% end %>
+  </li>
 <% end %>
 </ol>
 
