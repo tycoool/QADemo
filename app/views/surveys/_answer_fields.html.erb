@@ -1,6 +1,5 @@
-<div class="field">
+<div class="fieldset">
   <%= f.label :content, "Answers" %>
   <%= f.text_field :content %>
-  <%= f.check_box :_destroy %>
-  <%= f.label :_destroy, "Remove answer" %>
+  <%= link_to_remove_fields "remove", f %>
 </div>
