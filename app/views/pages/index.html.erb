@@ -1,1 +1,12 @@
 <h1>Welcome <%= current_user.email if current_user %></h1>
+<p>Why you should not create some <%= link_to "new surveys", new_survey_path %> or answer to some of these questions </p> 
+<ul>
+<% Survey.all.each do |survey| %>
+  <li><%= link_to survey.name, survey %></li>
+  <ul>
+    <% survey.questions.each do |question| %>
+      <li><%= question.content %></li>
+    <% end %>
+  </ul>
+<% end %>
+</ul>
