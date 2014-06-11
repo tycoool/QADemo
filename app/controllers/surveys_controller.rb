@@ -49,8 +49,12 @@ class SurveysController < ApplicationController
     # TODO check if current user has to fill tha last version, or some older
     if @survey.filled_surveys.empty?
       filled_survey = @survey.filled_surveys.create
+    elsif @survey.filled_surveys.uncompleted.empty?
+      # all are completed
+      filled_survey = @survey.filled_surveys.create
     else
-      filled_survey = @survey.filled_surveys.first
+      # we have some uncompleted
+      filled_survey = @survey.filled_surveys.uncompleted.first
     end
     redirect_to edit_filled_survey_path(filled_survey)
   end

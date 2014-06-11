@@ -5,6 +5,7 @@ class FilledSurvey < ActiveRecord::Base
   after_initialize :custom_init
 
   scope :completed, -> { where(completed: true) }
+  scope :uncompleted, -> { where(completed: nil) }
 
   def total_score
     sum = 0

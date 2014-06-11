@@ -6,10 +6,13 @@
     <%= link_to survey.name, survey %>
     <% if survey.filled_surveys.empty? %>
       <%= link_to "FILL THIS", fill_survey_path(survey) %>
-    <% elsif survey.filled_surveys.completed.empty? %>
-      <%= link_to "COMPLETE THIS", fill_survey_path(survey) %>
-    <% else %>
+    <% elsif survey.filled_surveys.uncompleted.empty? %>
       <%= link_to "TRY AGAIN", fill_survey_path(survey) %>
+    <% else %>
+      <%= link_to "COMPLETE THIS", fill_survey_path(survey) %>
+    <% end %>
+    <% survey.filled_surveys.completed.each do |filled_survey| %>
+      <%= link_to "completed("+filled_survey.total_score.to_s+"/"+filled_survey.maximum_score.to_s+")", filled_survey_path(filled_survey) %>
     <% end %>
   </li>
   <ul>
