@@ -46,13 +46,12 @@ class SurveysController < ApplicationController
   end
 
   def fill
-    # TODO chech if current user has already filled
+    # TODO check if current user has to fill tha last version, or some older
     if @survey.filled_surveys.empty?
-      filled_survey = new @survey.filled_surveys.create
+      filled_survey = @survey.filled_surveys.create
     else
       filled_survey = @survey.filled_surveys.first
     end
-      
     redirect_to edit_filled_survey_path(filled_survey)
   end
 

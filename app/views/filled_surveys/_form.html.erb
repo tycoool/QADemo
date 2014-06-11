@@ -11,14 +11,22 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :survey_id %><br>
-    <%= f.number_field :survey_id %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
+  <ul>
+  <%= f.object.name %>
+  <%= f.fields_for :filled_questions do |f_question| %>
+    <%= f_question.hidden_field :id %>
+    <li><%= f_question.object.content %></li>
+    <ul>
+    <%= f_question.fields_for :filled_choice do |f_choice| %>
+      <% f_choice.collection_radio_buttons :selected, f_choice.object.filled_question.filled_answers, :id, :content do |b| %>
+        <li>
+          <%= b.label { b.radio_button + b.text } %>
+        </li>
+      <% end %>
+    <% end %>
+    </ul>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
