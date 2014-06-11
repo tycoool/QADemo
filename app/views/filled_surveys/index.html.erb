@@ -1,0 +1,27 @@
+<h1>Listing filled_surveys</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Survey</th>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @filled_surveys.each do |filled_survey| %>
+      <tr>
+        <td><%= filled_survey.survey_id %></td>
+        <td><%= filled_survey.name %></td>
+        <td><%= link_to 'Show', filled_survey %></td>
+        <td><%= link_to 'Edit', edit_filled_survey_path(filled_survey) %></td>
+        <td><%= link_to 'Destroy', filled_survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Filled survey', new_filled_survey_path %>
