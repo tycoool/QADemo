@@ -1,5 +1,5 @@
 class SurveysController < ApplicationController
-  before_action :set_survey, only: [:show, :edit, :update, :destroy]
+  before_action :set_survey, only: [:show, :edit, :update, :destroy, :fill]
 
   # GET /surveys
   def index
@@ -43,6 +43,17 @@ class SurveysController < ApplicationController
   def destroy
     @survey.destroy
     redirect_to surveys_url, notice: 'Survey was successfully destroyed.'
+  end
+
+  def fill
+    # TODO chech if current user has already filled
+    if @survey.filled_surveys.empty?
+      filled_survey = new @survey.filled_surveys.create
+    else
+      filled_survey = @survey.filled_surveys.first
+    end
+      
+    redirect_to edit_filled_survey_path(filled_survey)
   end
 
   private

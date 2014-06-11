@@ -2,7 +2,11 @@ BaseApp::Application.routes.draw do
 
   resources :filled_surveys
 
-  resources :surveys
+  resources :surveys do
+    member do
+      get :fill
+    end
+  end
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
