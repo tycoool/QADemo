@@ -1,5 +1,7 @@
 <div class="fieldset">
-  <%= f.label :content, "Answers" %>
+  <%= f.label :score, "Score" %>
+  <%= f.select :score, 1..10 %> 
+  <%= f.label :content, "Answer" %>
   <%= f.text_field :content %>
   <%= link_to_remove_fields "remove", f %>
 </div>

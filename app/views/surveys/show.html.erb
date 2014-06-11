@@ -8,9 +8,11 @@
 <ol>
 <% @survey.questions.each do |question| %>
   <li>
-    <%=h question.content %>
+  <%= question.content %><br>
     <% question.answers.each do |answer| %>
+      S: <%= answer.score %>
       A: <%= answer.content %>
+      <br>
     <% end %>
   </li>
 <% end %>
