@@ -12,7 +12,6 @@
   <% end %>
 
   <ul>
-  <%= f.object.name %>
   <%= f.fields_for :filled_questions do |f_question| %>
     <%= f_question.hidden_field :id %>
     <li><%= f_question.object.content %></li>
@@ -29,5 +28,6 @@
 
   <div class="actions">
     <%= f.submit %>
+    <%= f.submit "Complete" %>
   </div>
 <% end %>

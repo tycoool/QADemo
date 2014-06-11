@@ -2,7 +2,16 @@
 <p>Why you should not create some <%= link_to "New Surveys", new_survey_path %>, edit existing one or fill some of them</p> 
 <ul>
 <% Survey.all.each do |survey| %>
-  <li><%= link_to survey.name, survey %> <%= link_to "FILL THIS", fill_survey_path(survey) %></li>
+  <li>
+    <%= link_to survey.name, survey %>
+    <% if survey.filled_surveys.empty? %>
+      <%= link_to "FILL THIS", fill_survey_path(survey) %>
+    <% elsif survey.filled_surveys.completed.empty? %>
+      <%= link_to "COMPLETE THIS", fill_survey_path(survey) %>
+    <% else %>
+      <%= link_to "TRY AGAIN", fill_survey_path(survey) %>
+    <% end %>
+  </li>
   <ul>
     <% survey.questions.each do |question| %>
       <li><%= question.content %></li>

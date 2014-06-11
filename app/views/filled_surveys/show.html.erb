@@ -10,5 +10,31 @@
   <%= @filled_survey.name %>
 </p>
 
+<ul>
+  <% @filled_survey.filled_questions.each do |filled_question| %>
+    <li><%= filled_question.content %></li>
+    <ul>
+      <% filled_question.filled_answers.each do |filled_answer| %>
+        <li>
+        <% if filled_question.filled_choice.selected == filled_answer.id %>
+          <strong>
+          <%= filled_answer.score %>
+          <%= filled_answer.content %>
+          -- Your answer
+          </strong
+        <% else %>
+          <%= filled_answer.score %>
+          <%= filled_answer.content %>
+        <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  Total score = <%= @filled_survey.total_score %>
+  <br>
+  Maximum score = <%= @filled_survey.maximum_score %>
+  <br>
+
 <%= link_to 'Edit', edit_filled_survey_path(@filled_survey) %> |
 <%= link_to 'Back', filled_surveys_path %>
