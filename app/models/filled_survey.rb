@@ -3,6 +3,7 @@ class FilledSurvey < ActiveRecord::Base
   belongs_to :survey
   accepts_nested_attributes_for :filled_questions
   after_initialize :custom_init
+  validates_associated :filled_questions 
 
   scope :completed, -> { where(completed: true) }
   scope :uncompleted, -> { where(completed: nil) }

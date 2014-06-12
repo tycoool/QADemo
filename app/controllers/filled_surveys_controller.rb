@@ -32,15 +32,21 @@ class FilledSurveysController < ApplicationController
 
   # PATCH/PUT /filled_surveys/1
   def update
+    if params[:commit] == "Complete"
+      @filled_survey.completed = true
+      @filled_survey.save(validate: false)
+    end
     if @filled_survey.update(filled_survey_params)
-      if params[:commit] == "Complete"
-        @filled_survey.completed = true
-        @filled_survey.save
+      if @filled_survey.completed == true
         redirect_to root_path, notice: 'Filled survey was successfully completed.'
       else
         redirect_to @filled_survey, notice: 'Filled survey was successfully updated.'
       end
     else
+      if @filled_survey.completed == true
+        @filled_survey.completed = false
+        @filled_survey.save(validate: false)
+      end
       render :edit
     end
   end
